@@ -1,13 +1,11 @@
 import React from 'react';
 import './App.css';
+import Header from './components/layout/Header';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Jose Arosemena</h1>
-        <p>Software Engineer</p>
-      </header>
+    <Header />
       <main>
         <section id="about">
           <h2>About Me</h2>
