@@ -1,7 +1,23 @@
 import React from 'react';
 import { Box, Typography, Link, Stack, Container } from '@mui/material';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Header = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavigation = (section) => {
+    navigate(`/${section}`);
+    // Smooth scroll to the section
+    const element = document.getElementById(section);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Get the current section from the hash URL
+  const currentSection = location.pathname.split('/')[1] || 'about';
+
   return (
     <Box 
       component="header" 
@@ -61,13 +77,64 @@ const Header = () => {
               }
             }}
           >
-            <Link href="#about" color="inherit" underline="hover">
+            <Link 
+              component="button"
+              onClick={() => handleNavigation('about')}
+              color="inherit" 
+              underline="hover"
+              sx={{ 
+                color: currentSection === 'about' ? 'secondary.main' : 'inherit',
+                border: 'none',
+                background: 'none',
+                cursor: 'pointer',
+                p: 0
+              }}
+            >
               About
             </Link>
-            <Link href="#projects" color="inherit" underline="hover">
+            <Link 
+              component="button"
+              onClick={() => handleNavigation('resume')}
+              color="inherit" 
+              underline="hover"
+              sx={{ 
+                color: currentSection === 'resume' ? 'secondary.main' : 'inherit',
+                border: 'none',
+                background: 'none',
+                cursor: 'pointer',
+                p: 0
+              }}
+            >
+              Resume
+            </Link>
+            <Link 
+              component="button"
+              onClick={() => handleNavigation('projects')}
+              color="inherit" 
+              underline="hover"
+              sx={{ 
+                color: currentSection === 'projects' ? 'secondary.main' : 'inherit',
+                border: 'none',
+                background: 'none',
+                cursor: 'pointer',
+                p: 0
+              }}
+            >
               Projects
             </Link>
-            <Link href="#contact" color="inherit" underline="hover">
+            <Link 
+              component="button"
+              onClick={() => handleNavigation('contact')}
+              color="inherit" 
+              underline="hover"
+              sx={{ 
+                color: currentSection === 'contact' ? 'secondary.main' : 'inherit',
+                border: 'none',
+                background: 'none',
+                cursor: 'pointer',
+                p: 0
+              }}
+            >
               Contact
             </Link>
           </Stack>
