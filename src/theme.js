@@ -31,6 +31,10 @@ const theme = createTheme({
       textAlign: 'center',
     },
     h3: {
+      fontWeight: 600,
+      textAlign: 'center',
+    },
+    h4: {
       fontWeight: 500,
       textAlign: 'center',
     },
