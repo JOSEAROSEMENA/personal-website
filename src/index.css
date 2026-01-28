@@ -1,21 +1,124 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 * {
   box-sizing: border-box;
 }
 
+:root {
+  --ink: #0f1217;
+  --ink-muted: #2a3442;
+  --paper: #f6efe6;
+  --sand: #eee2d2;
+  --rust: #c86a3f;
+  --teal: #1f7a8c;
+  --gold: #e0b15a;
+  --edge: rgba(15, 18, 23, 0.12);
+  --shadow: rgba(16, 20, 28, 0.15);
+}
+
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Space Grotesk', 'Segoe UI', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background:
+    radial-gradient(1200px 800px at 10% -10%, rgba(31, 122, 140, 0.12), transparent 60%),
+    radial-gradient(900px 600px at 90% 0%, rgba(200, 106, 63, 0.12), transparent 55%),
+    linear-gradient(120deg, #f6efe6 0%, #efe4d6 48%, #f3eadf 100%);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+code {
+  font-family: 'JetBrains Mono', 'SFMono-Regular', Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.app-shell {
+  display: flex;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.app-shell > main {
+  flex: 1;
+  padding: 3.5rem 3rem 4.5rem;
+}
+
+section {
+  margin-bottom: 4.5rem;
+  padding: 2.5rem 0;
+}
+
+/* Smooth animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    flex-direction: column;
+  }
+
+  .app-shell > aside {
+    position: static;
+    width: 100%;
+    height: auto;
+    border-right: 0;
+    border-bottom: 1px solid rgba(15, 18, 23, 0.08);
+  }
+
+  .app-shell > main {
+    padding: 2.5rem 1.5rem 4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e8dbcc;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #c86a3f 0%, #1f7a8c 100%);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #d07a52 0%, #2a8da2 100%);
+}
+
+/* Selection color */
+::selection {
+  background: rgba(200, 106, 63, 0.25);
+  color: var(--ink);
+}
+
+::-moz-selection {
+  background: rgba(200, 106, 63, 0.25);
+  color: var(--ink);
 }

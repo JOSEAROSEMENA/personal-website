@@ -1,79 +1,81 @@
-import React from 'react';
-import { Box, Typography, Link, Stack, Container } from '@mui/material';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Box, Typography, Link, Stack, Button } from '@mui/material';
 
 const styles = {
-  header: {
-    textAlign: 'center',
-    py: 8,
-    backgroundColor: 'primary.main',
-    color: 'primary.contrastText',
-    boxShadow: 3,
-    position: 'relative',
-    '&::after': {
-      content: '""',
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      right: 0,
-      height: '4px',
-      background: 'secondary.main',
-    }
-  },
-  title: {
-    fontWeight: 'bold',
-    letterSpacing: 1,
-  },
-  subtitle: {
-    color: 'primary.contrastText',
-    mb: 4
-  },
-  navContainer: {
-    mt: 2,
-    '& .MuiLink-root': {
-      transition: 'color 0.2s',
-      '&:hover': {
-        color: 'secondary.main'
-      }
-    }
+  sidebar: {
+    position: 'sticky',
+    top: 0,
+    alignSelf: 'flex-start',
+    height: '100vh',
+    padding: '2.5rem 2rem',
+    borderRight: '1px solid rgba(15, 18, 23, 0.08)',
+    background: 'rgba(246, 239, 230, 0.9)',
+    backdropFilter: 'blur(12px)',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 4,
+    minWidth: 240,
   },
   navLink: {
     border: 'none',
     background: 'none',
     cursor: 'pointer',
-    p: 0
-  }
+    p: 0,
+    fontSize: '1rem',
+    fontWeight: 600,
+    transition: 'all 0.3s ease',
+    position: 'relative',
+    color: 'rgba(15, 18, 23, 0.7)',
+    textDecoration: 'none',
+    textAlign: 'left',
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      bottom: -6,
+      left: 0,
+      width: '0%',
+      height: '2px',
+      background: 'linear-gradient(90deg, #1f7a8c, #c86a3f)',
+      transition: 'width 0.3s ease',
+    },
+    '&:hover': {
+      color: '#0f1217',
+      '&::after': {
+        width: '100%',
+      },
+    },
+  },
+  navLinkActive: {
+    color: '#0f1217',
+    '&::after': {
+      width: '100%',
+    },
+  },
 };
 
-// Navigation Link Component
 const NavLink = ({ section, currentSection, onClick }) => (
-  <Link 
+  <Link
     component="button"
-    onClick={() => onClick(section)}
-    color="inherit" 
-    underline="hover"
-    sx={{ 
+    onClick={(event) => {
+      event.preventDefault();
+      onClick(section);
+    }}
+    sx={{
       ...styles.navLink,
-      color: currentSection === section ? 'secondary.main' : 'inherit',
+      ...(currentSection === section && styles.navLinkActive),
     }}
   >
     {section.charAt(0).toUpperCase() + section.slice(1)}
   </Link>
 );
 
-// Navigation Component
 const Navigation = ({ currentSection, onNavigate }) => {
-  const sections = ['about', 'resume', 'projects', 'contact'];
-  
+  const sections = ['about', 'projects', 'resume', 'contact'];
+
   return (
     <nav>
-      <Stack 
-        direction="row" 
-        spacing={4} 
-        justifyContent="center"
-        sx={styles.navContainer}
-      >
-        {sections.map(section => (
+      <Stack spacing={2}>
+        {sections.map((section) => (
           <NavLink
             key={section}
             section={section}
@@ -86,44 +88,49 @@ const Navigation = ({ currentSection, onNavigate }) => {
   );
 };
 
-// Main Header Component
 const Header = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const currentSection = location.pathname.split('/')[1] || 'about';
+  const [currentSection, setCurrentSection] = useState('about');
 
   const handleNavigation = (section) => {
-    navigate(`/${section}`);
-    const element = document.getElementById(section);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    const target = document.getElementById(section);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+    setCurrentSection(section);
   };
 
   return (
-    <Box component="header" sx={styles.header}>
-      <Container maxWidth="md">
-        <Typography 
-          variant="h2" 
-          component="h1" 
-          gutterBottom
-          sx={styles.title}
+    <Box component="aside" sx={styles.sidebar}>
+      <Box>
+        <Typography
+          variant="overline"
+          sx={{
+            letterSpacing: '0.3em',
+            color: 'rgba(15, 18, 23, 0.6)',
+            fontSize: '0.7rem',
+          }}
         >
+          Portfolio
+        </Typography>
+        <Typography variant="h5" sx={{ color: '#0f1217', mt: 1, mb: 0.5 }}>
           Jose Arosemena
         </Typography>
-        <Typography 
-          variant="h5" 
-          component="p" 
-          gutterBottom
-          sx={styles.subtitle}
-        >
+        <Typography variant="body2" sx={{ color: 'rgba(15, 18, 23, 0.65)' }}>
           Full Stack DevOps Engineer
         </Typography>
-        <Navigation 
-          currentSection={currentSection}
-          onNavigate={handleNavigation}
-        />
-      </Container>
+      </Box>
+
+      <Navigation currentSection={currentSection} onNavigate={handleNavigation} />
+
+      <Box sx={{ mt: 'auto' }}>
+        <Button
+          variant="contained"
+          onClick={() => handleNavigation('contact')}
+          sx={{ width: '100%' }}
+        >
+          Let&#39;s talk
+        </Button>
+      </Box>
     </Box>
   );
 };

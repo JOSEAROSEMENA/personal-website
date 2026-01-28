@@ -3,61 +3,109 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#2E3B55', // A deep blue color
-      light: '#4A5B7A',
-      dark: '#1A2238',
-      contrastText: '#FFFFFF',
+      main: '#0f1217',
+      light: '#2a3442',
+      dark: '#090b10',
+      contrastText: '#f6efe6',
     },
     secondary: {
-      main: '#E63946', // A vibrant red color
-      light: '#FF5A6A',
-      dark: '#B32B3A',
-      contrastText: '#FFFFFF',
+      main: '#c86a3f',
+      light: '#d98962',
+      dark: '#a85532',
+      contrastText: '#f6efe6',
     },
     background: {
-      default: '#F8F9FA',
-      paper: '#FFFFFF',
+      default: '#f6efe6',
+      paper: '#fbf6ef',
     },
+    accent: '#1f7a8c',
   },
   typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: '"Space Grotesk", "Segoe UI", "Helvetica Neue", sans-serif',
     h1: {
+      fontFamily: '"Newsreader", "Times New Roman", serif',
       fontWeight: 700,
-      textAlign: 'center',
+      letterSpacing: '-0.01em',
+      lineHeight: 1.1,
     },
     h2: {
-      fontWeight: 600,
-      marginBottom: '1rem',
-      textAlign: 'center',
+      fontFamily: '"Newsreader", "Times New Roman", serif',
+      fontWeight: 700,
+      letterSpacing: '-0.01em',
+      lineHeight: 1.2,
+      marginBottom: '1.5rem',
     },
     h3: {
+      fontFamily: '"Newsreader", "Times New Roman", serif',
       fontWeight: 600,
-      textAlign: 'center',
+      lineHeight: 1.3,
+      marginBottom: '1rem',
     },
     h4: {
-      fontWeight: 500,
-      textAlign: 'center',
+      fontFamily: '"Newsreader", "Times New Roman", serif',
+      fontWeight: 600,
+      lineHeight: 1.5,
+    },
+    h5: {
+      fontFamily: '"Newsreader", "Times New Roman", serif',
+      fontWeight: 600,
     },
     body1: {
-      lineHeight: 1.7,
-      textAlign: 'center',
+      lineHeight: 1.8,
+      fontSize: '1.02rem',
+    },
+    body2: {
+      lineHeight: 1.6,
+      fontSize: '0.95rem',
+    },
+    button: {
+      fontWeight: 600,
+      letterSpacing: '0.02em',
+      textTransform: 'none',
     },
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 8,
+          borderRadius: 999,
           textTransform: 'none',
+          fontWeight: 600,
+          fontSize: '1rem',
+          padding: '12px 28px',
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          '&:hover': {
+            transform: 'translateY(-2px)',
+            boxShadow: '0 10px 24px rgba(200, 106, 63, 0.25)',
+          },
+        },
+        contained: {
+          background: 'linear-gradient(135deg, #c86a3f 0%, #a85532 100%)',
+          '&:hover': {
+            background: 'linear-gradient(135deg, #d98962 0%, #c86a3f 100%)',
+          },
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: 16,
+          boxShadow: '0 10px 30px rgba(16, 20, 28, 0.08)',
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          border: '1px solid rgba(15, 18, 23, 0.08)',
+          '&:hover': {
+            boxShadow: '0 18px 48px rgba(16, 20, 28, 0.16)',
+            transform: 'translateY(-4px)',
+          },
         },
       },
     },
     MuiContainer: {
       styleOverrides: {
         root: {
-          paddingTop: '2rem',
-          paddingBottom: '2rem',
-          textAlign: 'center',
+          paddingTop: '3rem',
+          paddingBottom: '3rem',
         },
       },
     },
@@ -65,25 +113,26 @@ const theme = createTheme({
       styleOverrides: {
         body: {
           scrollBehavior: 'smooth',
+          backgroundColor: '#f6efe6',
         },
         main: {
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: '2rem',
-          textAlign: 'center',
+          minHeight: 'calc(100vh - 300px)',
         },
         section: {
-          marginBottom: '3rem',
-          textAlign: 'center',
+          marginBottom: '4rem',
+          paddingBottom: '2rem',
         },
         footer: {
-          backgroundColor: '#F8F9FA',
-          padding: '1rem',
-          marginTop: '2rem',
-          textAlign: 'center',
+          backgroundColor: '#0f1217',
+          color: '#f6efe6',
+          padding: '2rem 1rem',
+          marginTop: '4rem',
         },
       },
     },
+  },
+  shape: {
+    borderRadius: 12,
   },
 });
 
