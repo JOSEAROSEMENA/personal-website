@@ -2,26 +2,8 @@ import React from 'react';
 import { Box, Typography, Link, Stack, Container } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-const Header = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const handleNavigation = (section) => {
-    navigate(`/${section}`);
-    // Smooth scroll to the section
-    const element = document.getElementById(section);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  // Get the current section from the hash URL
-  const currentSection = location.pathname.split('/')[1] || 'about';
-
-  return (
-    <Box 
-      component="header" 
-      sx={{ 
+const styles = {
+  header: {
     textAlign: 'center',
     py: 8,
     backgroundColor: 'primary.main',
