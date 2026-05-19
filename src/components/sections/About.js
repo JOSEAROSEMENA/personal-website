@@ -4,8 +4,8 @@ import { FaCode, FaServer, FaTools } from 'react-icons/fa';
 
 const About = () => {
   const skills = [
-    'React', 'Node.js', 'Docker', 'Kubernetes', 'AWS', 
-    'DevOps', 'Full Stack', 'Python', 'JavaScript', 'CI/CD'
+    'Python', 'AWS', 'DevOps', 'Cloud Automation', 'Boto3', 'IaC (CloudFormation / Terraform)',
+    'Full Stack', 'React', 'JavaScript', 'CI/CD', 'Docker', 'Node.js',  
   ];
 
   const highlights = [
@@ -68,6 +68,7 @@ const About = () => {
                 <Chip
                   key={index}
                   label={skill}
+                  onClick={() => console.log("clicked")}
                   sx={{
                     background: '#f0e1d0',
                     color: 'var(--ink)',

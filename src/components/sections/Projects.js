@@ -102,6 +102,7 @@ const Projects = () => {
                         key={i}
                         label={tech}
                         size="small"
+                        onClick={() => console.log("clicked")}
                         sx={{
                           background: '#f0e1d0',
                           color: 'var(--ink)',

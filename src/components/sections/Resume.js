@@ -98,6 +98,7 @@ const Resume = () => {
                     key={skill}
                     label={skill}
                     size="small"
+                    onClick={() => console.log("clicked")}
                     sx={{
                       background: '#f0e1d0',
                       color: 'var(--ink)',
