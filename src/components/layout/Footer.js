@@ -1,6 +1,5 @@
 import React from 'react';
-import { Box, Container, Typography, Stack, Link } from '@mui/material';
-import { FaHeart } from 'react-icons/fa';
+import { Box, Container, Typography, Stack } from '@mui/material';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -9,64 +8,33 @@ const Footer = () => {
     <Box
       component="footer"
       sx={{
-        background: 'linear-gradient(135deg, #10151c 0%, #0b0f14 100%)',
-        color: '#f6efe6',
+        background: 'rgba(8, 11, 15, 0.92)',
+        color: 'var(--ink)',
         py: 4,
         mt: 'auto',
-        borderTop: '1px solid rgba(246, 239, 230, 0.1)',
+        borderTop: '1px solid var(--edge)',
       }}
     >
       <Container maxWidth="lg">
-        <Stack 
+        <Stack
           direction={{ xs: 'column', md: 'row' }}
-          spacing={2}
+          spacing={1}
           justifyContent="space-between"
-          alignItems={{ xs: 'center', md: 'flex-start' }}
+          alignItems={{ xs: 'flex-start', md: 'center' }}
         >
-          <Box>
-            <Typography 
-              variant="body2" 
-              sx={{ 
-                color: 'rgba(246, 239, 230, 0.75)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 0.5,
-              }}
-            >
-              Made with <FaHeart size={14} color="#c86a3f" /> by Jose Arosemena © {currentYear}
-            </Typography>
-          </Box>
-          
-          <Stack direction="row" spacing={2}>
-            <Link
-              href="#"
-              sx={{
-                color: 'rgba(246, 239, 230, 0.7)',
-                textDecoration: 'none',
-                fontSize: '0.9rem',
-                transition: 'color 0.3s ease',
-                '&:hover': {
-                  color: '#f6efe6',
-                },
-              }}
-            >
-              Privacy
-            </Link>
-            <Link
-              href="#"
-              sx={{
-                color: 'rgba(246, 239, 230, 0.7)',
-                textDecoration: 'none',
-                fontSize: '0.9rem',
-                transition: 'color 0.3s ease',
-                '&:hover': {
-                  color: '#f6efe6',
-                },
-              }}
-            >
-              Terms
-            </Link>
-          </Stack>
+          <Typography variant="body2" sx={{ color: 'var(--ink-muted)' }}>
+            Jose Arosemena © {currentYear}
+          </Typography>
+          <Typography
+            variant="body2"
+            sx={{
+              color: 'var(--ink-faint)',
+              fontFamily: '"JetBrains Mono", monospace',
+              fontSize: '0.78rem',
+            }}
+          >
+            full stack devops engineer / cloud automation
+          </Typography>
         </Stack>
       </Container>
     </Box>

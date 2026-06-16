@@ -1,159 +1,98 @@
 import React from 'react';
-import { Box, Container, Typography, Button, Stack, Chip, Divider } from '@mui/material';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { Box, Container, Typography, Stack, Chip } from '@mui/material';
 
 const Projects = () => {
   const projects = [
     {
-      title: 'Project One',
-      description: 'A full-stack web application built with React and Node.js for managing and tracking projects efficiently.',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Docker'],
-      github: '#',
-      live: '#',
+      title: 'Cloud Cost Automation',
+      status: 'Case study pending',
+      description: 'Automation patterns for detecting and removing idle AWS resources while keeping remediation auditable.',
+      technologies: ['AWS', 'Python', 'Boto3', 'Lambda'],
     },
     {
-      title: 'Project Two',
-      description: 'Cloud infrastructure automation tool that simplifies deployment and scaling using Kubernetes and Terraform.',
-      technologies: ['Kubernetes', 'Terraform', 'AWS', 'Python'],
-      github: '#',
-      live: '#',
+      title: 'Incident Signal Routing',
+      status: 'Case study pending',
+      description: 'Health alert centralization across cloud accounts with routing into operational response systems.',
+      technologies: ['AWS Health', 'BigPanda', 'ServiceNow', 'Serverless'],
     },
     {
-      title: 'Project Three',
-      description: 'Real-time data visualization platform with interactive dashboards and analytics built with modern web technologies.',
-      technologies: ['React', 'D3.js', 'Express', 'PostgreSQL'],
-      github: '#',
-      live: '#',
+      title: 'Logging Standards Enforcement',
+      status: 'Case study pending',
+      description: 'Regional logging controls designed to improve consistency across a large multi-account AWS environment.',
+      technologies: ['Lambda', 'S3', 'CloudWatch', 'Governance'],
     },
   ];
 
   return (
     <section id="projects">
       <Container maxWidth="lg">
-        <Box sx={{ mb: 5 }}>
-          <Typography 
-            variant="h2" 
-            component="h2"
-            sx={{
-              color: 'var(--ink)',
-              mb: 2,
-            }}
-          >
-            Selected work
+        <Box sx={{ mb: 5, maxWidth: 760 }}>
+          <Typography variant="h2" component="h2" sx={{ color: 'var(--ink)', mb: 2 }}>
+            Selected Projects
           </Typography>
-          <Typography 
-            variant="body1" 
-            sx={{
-              fontSize: '1.05rem',
-              color: 'var(--ink-muted)',
-            }}
-          >
-            A few projects where infrastructure, product craft, and performance meet.
+          <Typography variant="body1" sx={{ fontSize: '1.05rem', color: 'var(--ink-muted)' }}>
+            Representative work across automation, reliability, and cloud operations. Public case-study links will be added when details can be shared cleanly.
           </Typography>
         </Box>
 
-        <Stack spacing={3}>
+        <Stack spacing={0} sx={{ borderTop: '1px solid var(--edge)' }}>
           {projects.map((project, index) => (
             <Box
-              key={index}
+              key={project.title}
               sx={{
-                p: { xs: 3, md: 4 },
-                borderRadius: 4,
-                border: '1px solid rgba(15, 18, 23, 0.1)',
-                background: 'rgba(251, 246, 239, 0.9)',
-                boxShadow: '0 16px 40px rgba(16, 20, 28, 0.08)',
+                display: 'grid',
+                gridTemplateColumns: { xs: '1fr', md: '160px minmax(0, 1fr) 220px' },
+                gap: { xs: 2, md: 4 },
+                py: { xs: 3, md: 4 },
+                borderBottom: '1px solid var(--edge)',
               }}
             >
-              <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} alignItems="flex-start">
-                <Box sx={{ flex: 1 }}>
-                  <Typography
-                    variant="overline"
-                    sx={{
-                      letterSpacing: '0.3em',
-                      color: 'var(--ink-muted)',
-                      fontSize: '0.7rem',
-                    }}
-                  >
-                    Project {index + 1}
-                  </Typography>
-                  <Typography 
-                    variant="h4" 
-                    sx={{ 
-                      mb: 1.5, 
-                      fontWeight: 600,
-                      color: 'var(--ink)',
-                    }}
-                  >
-                    {project.title}
-                  </Typography>
-                  <Typography 
-                    variant="body2" 
-                    sx={{ 
-                      color: 'var(--ink-muted)',
-                      mb: 2.5,
-                      lineHeight: 1.8,
-                    }}
-                  >
-                    {project.description}
-                  </Typography>
-                  <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
-                    {project.technologies.map((tech, i) => (
-                      <Chip
-                        key={i}
-                        label={tech}
-                        size="small"
-                        onClick={() => console.log("clicked")}
-                        sx={{
-                          background: '#f0e1d0',
-                          color: 'var(--ink)',
-                          fontWeight: 600,
-                          fontSize: '0.8rem',
-                          border: '1px solid rgba(15, 18, 23, 0.12)',
-                        }}
-                      />
-                    ))}
-                  </Stack>
-                </Box>
-                <Divider orientation="vertical" flexItem sx={{ display: { xs: 'none', md: 'block' }, borderColor: 'rgba(15, 18, 23, 0.08)' }} />
-                <Stack spacing={1.5} sx={{ minWidth: { md: 180 } }}>
-                  <Button
-                    size="small"
-                    startIcon={<FaGithub />}
-                    variant="outlined"
-                    component="a"
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{
-                      color: 'var(--ink)',
-                      borderColor: 'rgba(15, 18, 23, 0.2)',
-                      '&:hover': {
-                        borderColor: 'var(--ink)',
-                        backgroundColor: 'rgba(15, 18, 23, 0.04)',
-                      },
-                    }}
-                  >
-                    View code
-                  </Button>
-                  <Button
-                    size="small"
-                    startIcon={<FaExternalLinkAlt />}
-                    variant="contained"
-                    component="a"
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{
-                      background: 'linear-gradient(135deg, #1f7a8c 0%, #155e6c 100%)',
-                      '&:hover': {
-                        background: 'linear-gradient(135deg, #2a8da2 0%, #1f7a8c 100%)',
-                      },
-                    }}
-                  >
-                    Live demo
-                  </Button>
+              <Box>
+                <Typography
+                  variant="overline"
+                  sx={{ letterSpacing: '0.2em', color: 'var(--teal)', fontSize: '0.68rem' }}
+                >
+                  0{index + 1}
+                </Typography>
+              </Box>
+
+              <Box>
+                <Typography variant="h4" sx={{ mb: 1, fontWeight: 600, color: 'var(--ink)' }}>
+                  {project.title}
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'var(--ink-muted)', lineHeight: 1.8, maxWidth: 680 }}>
+                  {project.description}
+                </Typography>
+              </Box>
+
+              <Box>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: 'var(--rust)',
+                    fontFamily: '"JetBrains Mono", monospace',
+                    fontSize: '0.78rem',
+                    mb: 1.5,
+                  }}
+                >
+                  {project.status}
+                </Typography>
+                <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+                  {project.technologies.map((tech) => (
+                    <Chip
+                      key={tech}
+                      label={tech}
+                      size="small"
+                      sx={{
+                        background: 'rgba(242, 246, 248, 0.05)',
+                        color: 'var(--ink-muted)',
+                        border: '1px solid var(--edge)',
+                        borderRadius: 1,
+                      }}
+                    />
+                  ))}
                 </Stack>
-              </Stack>
+              </Box>
             </Box>
           ))}
         </Stack>
@@ -162,4 +101,4 @@ const Projects = () => {
   );
 };
 
-export default Projects; 
+export default Projects;

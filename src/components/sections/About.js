@@ -1,122 +1,189 @@
-import React from 'react';
-import { Box, Container, Typography, Card, CardContent, Grid, Stack, Chip, Divider } from '@mui/material';
-import { FaCode, FaServer, FaTools } from 'react-icons/fa';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Box, Container, Typography, Grid, Stack, Chip, Divider } from '@mui/material';
 
 const About = () => {
   const skills = [
     'Python', 'AWS', 'DevOps', 'Cloud Automation', 'Boto3', 'IaC (CloudFormation / Terraform)',
-    'Full Stack', 'React', 'JavaScript', 'CI/CD', 'Docker', 'Node.js',  
+    'Full Stack', 'React', 'JavaScript', 'CI/CD', 'Docker', 'Node.js',
   ];
 
-  const highlights = [
-    {
-      icon: <FaCode size={32} />,
-      title: 'Full Stack Development',
-      description: 'Building scalable web applications with modern technologies'
-    },
-    {
-      icon: <FaServer size={32} />,
-      title: 'DevOps & Infrastructure',
-      description: 'Designing and maintaining cloud infrastructure and deployment pipelines'
-    },
-    {
-      icon: <FaTools size={32} />,
-      title: 'Problem Solving',
-      description: 'Creating elegant solutions to complex technical challenges'
-    },
-  ];
+  const terminalLines = useMemo(
+    () => [
+      '$ whoami',
+      'jose_arosemena',
+      '',
+      '$ cat engineer-profile.json',
+      '{',
+      '  "status": "building cloud automation and full stack apps",',
+      '  "stack": ["aws", "python", "react", "ci/cd"],',
+      '  "focus": "serverless workflows + deployment systems",',
+      '  "bias": "automate repeatable work",',
+      '  "mode": "product polish + infrastructure depth"',
+      '}',
+      '',
+      '$ ./ready-check',
+      'ready: true',
+    ],
+    []
+  );
+  const terminalText = useMemo(() => terminalLines.join('\n'), [terminalLines]);
+  const [typedTerminalText, setTypedTerminalText] = useState('');
+
+  useEffect(() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduceMotion) {
+      setTypedTerminalText(terminalText);
+      return undefined;
+    }
+
+    let index = 0;
+    let timeoutId;
+
+    const typeNextCharacter = () => {
+      index += 1;
+      setTypedTerminalText(terminalText.slice(0, index));
+
+      if (index < terminalText.length) {
+        const nextCharacter = terminalText[index];
+        const delay = nextCharacter === '\n' ? 180 : 18;
+        timeoutId = window.setTimeout(typeNextCharacter, delay);
+      }
+    };
+
+    timeoutId = window.setTimeout(typeNextCharacter, 4000);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [terminalText]);
+
 
   return (
     <section id="about">
       <Container maxWidth="lg">
-        <Grid container spacing={6}>
-          <Grid item xs={12} md={6}>
-            <Typography 
-              variant="h2" 
-              component="h2"
+        <Grid container spacing={7} alignItems="flex-start">
+          <Grid item xs={12} md={7}>
+            <Typography
+              variant="overline"
+              sx={{ letterSpacing: '0.24em', color: 'var(--teal)', fontSize: '0.72rem' }}
+            >
+              Jose Arosemena
+            </Typography>
+            <Typography
+              variant="h1"
+              component="h1"
+              className="about-marquee"
               sx={{
                 color: 'var(--ink)',
+                fontSize: { xs: '3rem', md: '5.4rem' },
+                mt: 1.5,
                 mb: 2,
               }}
             >
-              About
+              <span className="about-marquee__track">
+                <span>Designing systems. Automating work. Solving problems.</span>
+                <span aria-hidden="true">Designing systems. Automating work. Solving problems.</span>
+              </span>
             </Typography>
-            <Typography 
-              variant="body1" 
+            <Typography
+              variant="body1"
               sx={{
-                fontSize: '1.1rem',
+                fontSize: { xs: '1.08rem', md: '1.22rem' },
                 color: 'var(--ink-muted)',
-                lineHeight: 1.9,
+                lineHeight: 1.75,
                 mb: 3,
+                maxWidth: 720,
               }}
             >
-              I&#39;m a Full Stack DevOps Engineer who bridges product polish with infrastructure depth. I build systems that survive scale, keep teams shipping, and leave a clean, predictable interface for users.
+              I'm Jose, a Cloud Engineer with experience in AWS, Python, and DevOps who also enjoys building full-stack applications from frontend to production deployment.
             </Typography>
-            <Divider sx={{ borderColor: 'rgba(15, 18, 23, 0.1)', mb: 3 }} />
+
+
+            <Divider sx={{ borderColor: 'var(--edge)', mb: 3 }} />
             <Typography
               variant="overline"
-              sx={{
-                letterSpacing: '0.28em',
-                color: 'var(--ink-muted)',
-                fontSize: '0.7rem',
-              }}
+              sx={{ letterSpacing: '0.24em', color: 'var(--ink-muted)', fontSize: '0.7rem' }}
             >
               Core toolkit
             </Typography>
             <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap sx={{ mt: 2 }}>
-              {skills.map((skill, index) => (
+              {skills.map((skill) => (
                 <Chip
-                  key={index}
+                  key={skill}
                   label={skill}
-                  onClick={() => console.log("clicked")}
                   sx={{
-                    background: '#f0e1d0',
+                    background: 'rgba(82, 215, 232, 0.08)',
                     color: 'var(--ink)',
                     fontWeight: 600,
-                    fontSize: '0.85rem',
-                    border: '1px solid rgba(15, 18, 23, 0.12)',
-                    transition: 'all 0.3s ease',
-                    '&:hover': {
-                      transform: 'translateY(-2px)',
-                      boxShadow: '0 8px 16px rgba(16, 20, 28, 0.12)',
-                    },
+                    fontSize: '0.82rem',
+                    border: '1px solid var(--edge)',
+                    borderRadius: 1,
                   }}
                 />
               ))}
             </Stack>
           </Grid>
-          <Grid item xs={12} md={6}>
-            <Stack spacing={2}>
-              {highlights.map((highlight, index) => (
-                <Card
-                  key={index}
+
+          <Grid item xs={12} md={5}>
+            <Box
+              className="engineer-terminal"
+              sx={{
+                border: '1px solid rgba(82, 215, 232, 0.28)',
+                background:
+                  'linear-gradient(180deg, rgba(12, 18, 24, 0.96) 0%, rgba(5, 8, 12, 0.98) 100%)',
+                boxShadow: '0 24px 70px rgba(0, 0, 0, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.04)',
+                overflow: 'hidden',
+              }}
+            >
+              <Box
+                sx={{
+                  minHeight: 42,
+                  px: 2,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 1.1,
+                  borderBottom: '1px solid rgba(242, 246, 248, 0.09)',
+                  background: 'rgba(242, 246, 248, 0.045)',
+                }}
+              >
+                <Box sx={{ width: 11, height: 11, borderRadius: '50%', background: '#ff5f57' }} />
+                <Box sx={{ width: 11, height: 11, borderRadius: '50%', background: '#ffbd2e' }} />
+                <Box sx={{ width: 11, height: 11, borderRadius: '50%', background: '#28c840' }} />
+                <Typography
+                  component="span"
                   sx={{
-                    background: 'rgba(251, 246, 239, 0.9)',
-                    border: '1px solid rgba(15, 18, 23, 0.08)',
+                    ml: 1,
+                    color: 'var(--ink-faint)',
+                    fontFamily: '"JetBrains Mono", monospace',
+                    fontSize: '0.72rem',
+                    minWidth: 0,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
                   }}
                 >
-                  <CardContent sx={{ display: 'flex', gap: 3, alignItems: 'flex-start' }}>
-                    <Box sx={{ color: 'var(--teal)', mt: 0.5 }}>
-                      {highlight.icon}
-                    </Box>
-                    <Box>
-                      <Typography 
-                        variant="h5" 
-                        sx={{ mb: 1, fontWeight: 600, color: 'var(--ink)' }}
-                      >
-                        {highlight.title}
-                      </Typography>
-                      <Typography 
-                        variant="body2" 
-                        sx={{ color: 'var(--ink-muted)' }}
-                      >
-                        {highlight.description}
-                      </Typography>
-                    </Box>
-                  </CardContent>
-                </Card>
-              ))}
-            </Stack>
+                  jose@portfolio: ~/engineer-profile
+                </Typography>
+              </Box>
+              <Box
+                component="pre"
+                aria-label={terminalText}
+                sx={{
+                  m: 0,
+                  minHeight: { xs: 360, sm: 330 },
+                  p: { xs: 2.25, sm: 3 },
+                  color: 'var(--ink-muted)',
+                  fontFamily: '"JetBrains Mono", monospace',
+                  fontSize: { xs: '0.72rem', sm: '0.82rem' },
+                  lineHeight: 1.75,
+                  whiteSpace: 'pre-wrap',
+                  wordBreak: 'break-word',
+                  tabSize: 2,
+                }}
+              >
+                <span>{typedTerminalText}</span>
+                <span className="terminal-cursor" aria-hidden="true" />
+              </Box>
+            </Box>
           </Grid>
         </Grid>
       </Container>
@@ -124,4 +191,4 @@ const About = () => {
   );
 };
 
-export default About; 
+export default About;

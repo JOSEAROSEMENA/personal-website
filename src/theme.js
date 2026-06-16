@@ -2,36 +2,39 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
+    mode: 'dark',
     primary: {
-      main: '#0f1217',
-      light: '#2a3442',
-      dark: '#090b10',
-      contrastText: '#f6efe6',
+      main: '#52d7e8',
+      light: '#8fefff',
+      dark: '#1793a6',
+      contrastText: '#061014',
     },
     secondary: {
-      main: '#c86a3f',
-      light: '#d98962',
-      dark: '#a85532',
-      contrastText: '#f6efe6',
+      main: '#c67a50',
+      light: '#e1a17a',
+      dark: '#8d4d30',
+      contrastText: '#080b0f',
     },
     background: {
-      default: '#f6efe6',
-      paper: '#fbf6ef',
+      default: '#080b0f',
+      paper: '#10161d',
     },
-    accent: '#1f7a8c',
+    text: {
+      primary: '#f2f6f8',
+      secondary: '#9ba7b4',
+    },
+    accent: '#52d7e8',
   },
   typography: {
     fontFamily: '"Space Grotesk", "Segoe UI", "Helvetica Neue", sans-serif',
     h1: {
       fontFamily: '"Newsreader", "Times New Roman", serif',
       fontWeight: 700,
-      letterSpacing: '-0.01em',
       lineHeight: 1.1,
     },
     h2: {
       fontFamily: '"Newsreader", "Times New Roman", serif',
       fontWeight: 700,
-      letterSpacing: '-0.01em',
       lineHeight: 1.2,
       marginBottom: '1.5rem',
     },
@@ -68,21 +71,34 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 999,
+          borderRadius: 8,
           textTransform: 'none',
           fontWeight: 600,
-          fontSize: '1rem',
-          padding: '12px 28px',
-          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          fontSize: '0.95rem',
+          padding: '11px 22px',
+          transition: 'border-color 180ms ease, background-color 180ms ease, color 180ms ease',
+          boxShadow: 'none',
+          '&:focus-visible': {
+            outline: '2px solid #52d7e8',
+            outlineOffset: 3,
+          },
           '&:hover': {
-            transform: 'translateY(-2px)',
-            boxShadow: '0 10px 24px rgba(200, 106, 63, 0.25)',
+            boxShadow: 'none',
           },
         },
         contained: {
-          background: 'linear-gradient(135deg, #c86a3f 0%, #a85532 100%)',
+          background: '#52d7e8',
+          color: '#061014',
           '&:hover': {
-            background: 'linear-gradient(135deg, #d98962 0%, #c86a3f 100%)',
+            background: '#8fefff',
+          },
+        },
+        outlined: {
+          borderColor: 'rgba(242, 246, 248, 0.18)',
+          color: '#f2f6f8',
+          '&:hover': {
+            borderColor: '#52d7e8',
+            backgroundColor: 'rgba(82, 215, 232, 0.08)',
           },
         },
       },
@@ -90,13 +106,35 @@ const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          borderRadius: 16,
-          boxShadow: '0 10px 30px rgba(16, 20, 28, 0.08)',
-          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-          border: '1px solid rgba(15, 18, 23, 0.08)',
+          borderRadius: 8,
+          boxShadow: 'none',
+          transition: 'border-color 180ms ease, background-color 180ms ease',
+          border: '1px solid rgba(242, 246, 248, 0.1)',
+          backgroundImage: 'none',
           '&:hover': {
-            boxShadow: '0 18px 48px rgba(16, 20, 28, 0.16)',
-            transform: 'translateY(-4px)',
+            boxShadow: 'none',
+            borderColor: 'rgba(82, 215, 232, 0.38)',
+          },
+        },
+      },
+    },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          '&:focus-visible': {
+            outline: '2px solid #52d7e8',
+            outlineOffset: 4,
+            borderRadius: 4,
+          },
+        },
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          '&:focus-visible': {
+            outline: '2px solid #52d7e8',
+            outlineOffset: 3,
           },
         },
       },
@@ -113,7 +151,7 @@ const theme = createTheme({
       styleOverrides: {
         body: {
           scrollBehavior: 'smooth',
-          backgroundColor: '#f6efe6',
+          backgroundColor: '#080b0f',
         },
         main: {
           minHeight: 'calc(100vh - 300px)',
@@ -123,8 +161,8 @@ const theme = createTheme({
           paddingBottom: '2rem',
         },
         footer: {
-          backgroundColor: '#0f1217',
-          color: '#f6efe6',
+          backgroundColor: '#080b0f',
+          color: '#f2f6f8',
           padding: '2rem 1rem',
           marginTop: '4rem',
         },
@@ -132,7 +170,7 @@ const theme = createTheme({
     },
   },
   shape: {
-    borderRadius: 12,
+    borderRadius: 8,
   },
 });
 

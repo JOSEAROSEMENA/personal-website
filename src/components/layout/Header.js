@@ -6,47 +6,57 @@ const styles = {
     position: 'sticky',
     top: 0,
     alignSelf: 'flex-start',
-    height: '100vh',
-    padding: '2.5rem 2rem',
-    borderRight: '1px solid rgba(15, 18, 23, 0.08)',
-    background: 'rgba(246, 239, 230, 0.9)',
-    backdropFilter: 'blur(12px)',
+    height: { xs: 'auto', md: '100vh' },
+    width: { xs: '100%', md: 'auto' },
+    padding: { xs: '1.25rem 1.5rem', md: '2.25rem 1.75rem' },
+    borderRight: { xs: 'none', md: '1px solid var(--edge)' },
+    borderBottom: { xs: '1px solid var(--edge)', md: 'none' },
+    background: 'rgba(8, 11, 15, 0.78)',
+    backdropFilter: 'blur(18px)',
     display: 'flex',
-    flexDirection: 'column',
-    gap: 4,
-    minWidth: 240,
+    flexDirection: { xs: 'column', md: 'column' },
+    gap: { xs: 2.5, md: 5 },
+    minWidth: { md: 260 },
   },
   navLink: {
     border: 'none',
     background: 'none',
     cursor: 'pointer',
-    p: 0,
-    fontSize: '1rem',
+    p: '0.35rem 0',
+    minHeight: 44,
+    display: 'inline-flex',
+    alignItems: 'center',
+    fontSize: '0.95rem',
     fontWeight: 600,
-    transition: 'all 0.3s ease',
+    transition: 'color 180ms ease',
     position: 'relative',
-    color: 'rgba(15, 18, 23, 0.7)',
+    color: 'var(--ink-muted)',
     textDecoration: 'none',
     textAlign: 'left',
     '&::after': {
       content: '""',
       position: 'absolute',
-      bottom: -6,
+      bottom: 6,
       left: 0,
       width: '0%',
-      height: '2px',
-      background: 'linear-gradient(90deg, #1f7a8c, #c86a3f)',
-      transition: 'width 0.3s ease',
+      height: '1px',
+      background: 'var(--teal)',
+      transition: 'width 180ms ease',
+    },
+    '&:focus-visible': {
+      outline: '2px solid var(--teal)',
+      outlineOffset: 4,
+      borderRadius: 1,
     },
     '&:hover': {
-      color: '#0f1217',
+      color: 'var(--ink)',
       '&::after': {
         width: '100%',
       },
     },
   },
   navLinkActive: {
-    color: '#0f1217',
+    color: 'var(--ink)',
     '&::after': {
       width: '100%',
     },
@@ -74,7 +84,7 @@ const Navigation = ({ currentSection, onNavigate }) => {
 
   return (
     <nav>
-      <Stack spacing={2}>
+      <Stack direction={{ xs: 'row', md: 'column' }} spacing={{ xs: 2, md: 2 }} flexWrap="wrap" useFlexGap>
         {sections.map((section) => (
           <NavLink
             key={section}
@@ -105,28 +115,28 @@ const Header = () => {
         <Typography
           variant="overline"
           sx={{
-            letterSpacing: '0.3em',
-            color: 'rgba(15, 18, 23, 0.6)',
+            letterSpacing: '0.24em',
+            color: 'var(--teal)',
             fontSize: '0.7rem',
           }}
         >
-          Portfolio
+          Systems portfolio
         </Typography>
-        <Typography variant="h5" sx={{ color: '#0f1217', mt: 1, mb: 0.5 }}>
+        <Typography variant="h5" sx={{ color: 'var(--ink)', mt: 1, mb: 0.5 }}>
           Jose Arosemena
         </Typography>
-        <Typography variant="body2" sx={{ color: 'rgba(15, 18, 23, 0.65)' }}>
+        <Typography variant="body2" sx={{ color: 'var(--ink-muted)' }}>
           Full Stack DevOps Engineer
         </Typography>
       </Box>
 
       <Navigation currentSection={currentSection} onNavigate={handleNavigation} />
 
-      <Box sx={{ mt: 'auto' }}>
+      <Box sx={{ mt: { xs: 0, md: 'auto' } }}>
         <Button
           variant="contained"
           onClick={() => handleNavigation('contact')}
-          sx={{ width: '100%' }}
+          sx={{ width: { xs: 'auto', md: '100%' } }}
         >
           Let&#39;s talk
         </Button>
