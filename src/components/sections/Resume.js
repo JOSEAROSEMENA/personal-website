@@ -22,9 +22,10 @@ const Resume = () => {
       dates: 'September 2022 - November 2024',
       bullets: [
         'Built and maintained serverless apps with Python, SAM, DynamoDB, Lambda, and API Gateway to automate critical workflows.',
-        'Automated removal of idle AWS resources, cutting related costs by 100%.',
-        'Centralized AWS Health Alerts into BigPanda and ServiceNow for faster incident response.',
-        'Enforced logging standards across 200+ AWS accounts with Lambda and regional S3 storage.',
+        'Developed an event-driven infrastructure monitoring and incident management pipeline integrating AWS EventBridge, Lambda, BigPanda, ServiceNow, and internal databases to improve operational visibility, automate alerting workflows, and accelerate incident response across enterprise AWS environments',
+        'Automated AWS resource cleanup workflows using Python and Boto3 to identify and remove idle infrastructure, reducing unnecessary cloud spend and improving operational efficiency',
+        'Enforced logging standards across 200+ AWS accounts using Python, Lambda, and S3 integrations, improving compliance and deployment consistency',
+        'Implemented GitLab-to-GitHub repository mirroring using GitLab and GitHub APIs, improving repository redundancy and CI/CD resiliency'
       ],
     },
     {
