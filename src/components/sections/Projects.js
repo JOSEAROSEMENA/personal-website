@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Container, Typography, Stack, Chip } from '@mui/material';
+import { Box, Button, Container, Typography, Stack, Chip } from '@mui/material';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 const Projects = () => {
   const handleSkillChipClick = (event) => {
@@ -9,22 +10,22 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'Cloud Cost Automation',
-      status: 'Case study pending',
-      description: 'Automation patterns for detecting and removing idle AWS resources while keeping remediation auditable.',
-      technologies: ['AWS', 'Python', 'Boto3', 'Lambda'],
+      title: 'AWS Terraform CI/CD Pipeline',
+      repoUrl: 'https://github.com/JOSEAROSEMENA/aws-terraform-github-cicd',
+      description: 'Terraform-powered AWS networking baseline that deploys a multi-AZ VPC, public/private subnets, route tables, VPC Flow Logs IAM roles, and CI/CD automation through GitHub Actions.',
+      technologies: ['AWS', 'Terraform', 'GitHub Actions'],
     },
     {
-      title: 'Incident Signal Routing',
-      status: 'Case study pending',
-      description: 'Health alert centralization across cloud accounts with routing into operational response systems.',
-      technologies: ['AWS Health', 'BigPanda', 'ServiceNow', 'Serverless'],
+      title: 'Personal Website',
+      repoUrl: 'https://github.com/JOSEAROSEMENA/personal-website',
+      description: 'A responsive personal website built with React and Material-UI. Deployed on AWS S3 and CloudFront with CI/CD automation through GitHub Actions.',
+      technologies: ['React', 'Material-UI', 'JavaScript'],
     },
     {
-      title: 'Logging Standards Enforcement',
-      status: 'Case study pending',
-      description: 'Regional logging controls designed to improve consistency across a large multi-account AWS environment.',
-      technologies: ['Lambda', 'S3', 'CloudWatch', 'Governance'],
+      title: 'Coming Soon',
+      repoUrl: '',
+      description: 'Project is currently under developement.',
+      technologies: ['Under', 'Development'],
     },
   ];
 
@@ -71,17 +72,39 @@ const Projects = () => {
               </Box>
 
               <Box>
-                <Typography
-                  variant="body2"
+                <Button
+                  component={project.repoUrl ? 'a' : 'button'}
+                  href={project.repoUrl || undefined}
+                  target={project.repoUrl ? '_blank' : undefined}
+                  rel={project.repoUrl ? 'noopener noreferrer' : undefined}
+                  disabled={!project.repoUrl}
+                  startIcon={<GitHubIcon fontSize="small" />}
+                  variant="outlined"
                   sx={{
+                    justifyContent: 'flex-start',
                     color: 'var(--rust)',
                     fontFamily: '"JetBrains Mono", monospace',
                     fontSize: '0.78rem',
+                    borderColor: 'rgba(195, 108, 72, 0.45)',
+                    borderRadius: 1,
                     mb: 1.5,
+                    minHeight: 44,
+                    px: 1.5,
+                    textTransform: 'none',
+                    width: '100%',
+                    '&:hover': {
+                      borderColor: 'var(--rust)',
+                      backgroundColor: 'rgba(195, 108, 72, 0.08)',
+                    },
+                    '&.Mui-disabled': {
+                      borderColor: 'var(--edge)',
+                      color: 'var(--ink-muted)',
+                      opacity: 0.7,
+                    },
                   }}
                 >
-                  {project.status}
-                </Typography>
+                  {project.repoUrl ? 'View GitHub repo' : 'Repo pending'}
+                </Button>
                 <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
                   {project.technologies.map((tech) => (
                     <Chip
