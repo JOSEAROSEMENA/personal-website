@@ -9,6 +9,11 @@ const Resume = () => {
     'AWS VPC', 'Splunk',
   ];
 
+  const handleSkillChipClick = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+  };
+
   const roles = [
     {
       title: 'DevOps Engineer',
@@ -80,14 +85,26 @@ const Resume = () => {
                 {skills.map((skill) => (
                   <Chip
                     key={skill}
+                    component="span"
                     label={skill}
                     size="small"
+                    clickable={false}
+                    onClick={handleSkillChipClick}
                     sx={{
                       background: 'rgba(82, 215, 232, 0.08)',
                       color: 'var(--ink)',
                       fontWeight: 600,
                       border: '1px solid var(--edge)',
                       borderRadius: 1,
+                      cursor: 'default',
+                      userSelect: 'none',
+                      '& .MuiChip-label': {
+                        whiteSpace: 'normal',
+                      },
+                      '&:focus, &:focus-visible, &:active': {
+                        outline: 'none',
+                        boxShadow: 'none',
+                      },
                     }}
                   />
                 ))}

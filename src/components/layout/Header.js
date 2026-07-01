@@ -63,12 +63,14 @@ const styles = {
   },
 };
 
-const NavLink = ({ section, currentSection, onClick }) => (
+const NavLink = ({ section, currentSection, onNavigate }) => (
   <Link
     component="button"
     onClick={(event) => {
       event.preventDefault();
-      onClick(section);
+      if (typeof onNavigate === 'function') {
+        onNavigate(section);
+      }
     }}
     sx={{
       ...styles.navLink,
@@ -90,7 +92,7 @@ const Navigation = ({ currentSection, onNavigate }) => {
             key={section}
             section={section}
             currentSection={currentSection}
-            onClick={onNavigate}
+            onNavigate={onNavigate}
           />
         ))}
       </Stack>

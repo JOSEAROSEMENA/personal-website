@@ -1,0 +1,15 @@
+domain_name = "josearosemena.dev"
+aws_region  = "us-east-1"
+
+github_repository = "JOSEAROSEMENA/personal-website"
+github_branch     = "main"
+
+# Optional. S3 bucket names are global, so set this if the generated name is taken.
+# bucket_name = "josearosemena-dev-site-your-account-id"
+
+# Set to true only if you want Terraform destroy to delete a non-empty bucket.
+# force_destroy_bucket = false
+
+# Optional. If this AWS account already has a GitHub Actions OIDC provider, set it here
+# instead of letting this project create one.
+# github_oidc_provider_arn = "arn:aws:iam::123456789012:oidc-provider/token.actions.githubusercontent.com"

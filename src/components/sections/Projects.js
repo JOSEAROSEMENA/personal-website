@@ -2,6 +2,11 @@ import React from 'react';
 import { Box, Container, Typography, Stack, Chip } from '@mui/material';
 
 const Projects = () => {
+  const handleSkillChipClick = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+  };
+
   const projects = [
     {
       title: 'Cloud Cost Automation',
@@ -81,13 +86,25 @@ const Projects = () => {
                   {project.technologies.map((tech) => (
                     <Chip
                       key={tech}
+                      component="span"
                       label={tech}
                       size="small"
+                      clickable={false}
+                      onClick={handleSkillChipClick}
                       sx={{
                         background: 'rgba(242, 246, 248, 0.05)',
                         color: 'var(--ink-muted)',
                         border: '1px solid var(--edge)',
                         borderRadius: 1,
+                        cursor: 'default',
+                        userSelect: 'none',
+                        '& .MuiChip-label': {
+                          whiteSpace: 'normal',
+                        },
+                        '&:focus, &:focus-visible, &:active': {
+                          outline: 'none',
+                          boxShadow: 'none',
+                        },
                       }}
                     />
                   ))}

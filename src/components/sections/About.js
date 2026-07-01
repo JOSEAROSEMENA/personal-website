@@ -29,6 +29,11 @@ const About = () => {
   const terminalText = useMemo(() => terminalLines.join('\n'), [terminalLines]);
   const [typedTerminalText, setTypedTerminalText] = useState('');
 
+  const handleSkillChipClick = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+  };
+
   useEffect(() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -64,7 +69,7 @@ const About = () => {
           <Grid item xs={12} md={7}>
             <Typography
               variant="overline"
-              sx={{ letterSpacing: '0.24em', color: 'var(--teal)', fontSize: '0.72rem' }}
+              sx={{ letterSpacing: '0.24em', color: 'var(--teal)', fontSize: '1.5rem' }}
             >
               Jose Arosemena
             </Typography>
@@ -109,7 +114,10 @@ const About = () => {
               {skills.map((skill) => (
                 <Chip
                   key={skill}
+                  component="span"
                   label={skill}
+                  clickable={false}
+                  onClick={handleSkillChipClick}
                   sx={{
                     background: 'rgba(82, 215, 232, 0.08)',
                     color: 'var(--ink)',
@@ -117,6 +125,15 @@ const About = () => {
                     fontSize: '0.82rem',
                     border: '1px solid var(--edge)',
                     borderRadius: 1,
+                    cursor: 'default',
+                    userSelect: 'none',
+                    '& .MuiChip-label': {
+                      whiteSpace: 'normal',
+                    },
+                    '&:focus, &:focus-visible, &:active': {
+                      outline: 'none',
+                      boxShadow: 'none',
+                    },
                   }}
                 />
               ))}
