@@ -128,7 +128,6 @@ The domain was purchased through Namecheap, so the Namecheap nameservers must be
 - `npm start` - Run the app locally
 - `npm run build` - Build production static files
 - `npm test` - Run the test runner
-- `npm run deploy:aws` - Manual S3 sync and CloudFront invalidation using local AWS credentials
 
 ## Repository Structure
 
@@ -137,7 +136,6 @@ src/                 React application source
 public/              Static public assets
 infra/terraform/     AWS infrastructure as code
 .github/workflows/   GitHub Actions deployment workflow
-scripts/             Local deployment helper scripts
 ```
 
 ## License

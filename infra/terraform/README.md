@@ -43,14 +43,6 @@ CLOUDFRONT_DISTRIBUTION_ID=$(terraform output -raw cloudfront_distribution_id)
 
 The workflow in `.github/workflows/deploy.yml` deploys on every push to `main`.
 
-For a manual local deployment from the repo root:
-
-```bash
-npm run deploy:aws
-```
-
-The script runs `npm run build`, syncs `build/` to S3, and invalidates CloudFront.
-
 ## Useful Outputs
 
 ```bash
